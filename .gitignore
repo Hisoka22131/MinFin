@@ -1,0 +1,38 @@
+*.exe
+*.dll
+.vs
+bin/
+obj/
+*.user
+
+MinFin.DB/obj/
+MinFin.DB/bin/
+
+MinFin.Web/obj/
+MinFin.Web/bin/
+
+MinFin.UoW/obj/
+MinFin.UoW/bin/
+
+MinFin.Repository/obj/
+MinFin.Repository/bin/
+
+.idea/
+# Исключить все файлы с расширениями изображений
+
+MinFin.Web/wwwroot/images/
+Frontend/node_modules/
+Frontend/dist/
+Frontend/.angular/
+*.jpg
+*.jpeg
+*.png
+
+# Исключить все файлы видео
+*.mp4
+*.avi
+*.mov
+
+# Исключить все файлы аудио
+*.mp3
+*.wav
