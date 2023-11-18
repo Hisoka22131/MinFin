@@ -15,6 +15,7 @@ public class UserService : IUserService
     {
         _unitOfWork = unitOfWork;
     }
+    
     public Task<IEnumerable<UserListDto>> GetEntities()
     {
         throw new NotImplementedException();

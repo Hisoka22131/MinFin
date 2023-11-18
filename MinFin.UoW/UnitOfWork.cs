@@ -5,16 +5,21 @@ namespace MinFin.UoW;
 
 public class UnitOfWork : IUnitOfWork
 {
-    private readonly MinFinDBContext _dbContext;
+    private readonly MinFinDbContext _dbContext;
     public IUserRepository UserRepository { get; set; }
-
-    public UnitOfWork(MinFinDBContext dbContext)
+    
+    public UnitOfWork(MinFinDbContext dbContext)
     {
         _dbContext = dbContext ?? throw new ArgumentException(null, nameof(dbContext));
         UserRepository = new UserRepository(_dbContext);
     }
     
-    public int Save() => _dbContext.SaveChanges();
+    public async Task CommitAsync() => await _dbContext.SaveChangesAsync();
+
+    public Task Rollback()
+    {
+        throw new NotImplementedException();
+    }
     
     public void Dispose() => _dbContext.Dispose();
 }

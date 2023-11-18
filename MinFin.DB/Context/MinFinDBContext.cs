@@ -3,29 +3,18 @@ using MinFin.DB.Domain;
 
 namespace MinFin.DB.Context;
 
-public class MinFinDBContext : DbContext
+public class MinFinDbContext : DbContext
 {
-    /// <summary>
-    /// todo: Перенести в AppSettings
-    /// </summary>
-    private const string ConString = "Server=.\\; Database=MinFin; Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=True";
-    
-    public MinFinDBContext()
-    {
-    }
-
-    public MinFinDBContext(DbContextOptions<MinFinDBContext> options)
+    public MinFinDbContext(DbContextOptions<MinFinDbContext> options)
         : base(options)
     {
     }
-    
+
     public virtual DbSet<User> Users { get; set; }
     
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        if (!optionsBuilder.IsConfigured)
-        {
-            optionsBuilder.UseSqlServer(ConString);
-        }
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.Seed();
     }
 }

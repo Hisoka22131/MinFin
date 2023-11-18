@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MinFin.Web.Dto.Base;
 using MinFin.Web.Dto.User;
 using MinFin.Web.Services.Interfaces;
 
@@ -16,17 +17,18 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetUsers() => Ok(await _userService.GetEntities());
-    
+    public async Task<IActionResult> GetUsers() => new OkObjectResult(await _userService.GetEntities());
+
     [HttpGet]
-    [Route("get-users/{id:int}")]
-    public async Task<IActionResult> GetUsers(int id) => Ok(await _userService.GetEntity(id));
+    [Route("{id:int}")]
+    public async Task<IActionResult> GetUsers(int id) => new OkObjectResult(await _userService.GetEntity(id));
 
     [HttpPut]
     public async Task UpdateUser(UserPutDto dto) => await _userService.PutEntity(dto);
-    
+
     [HttpPost]
     public async Task CreateUser(UserPostDto dto) => await _userService.PostEntity(dto);
-    
-    
+
+    [HttpDelete]
+    public async Task Delete(EntityDto dto) => await _userService.PostDelete(dto.Id);
 }
