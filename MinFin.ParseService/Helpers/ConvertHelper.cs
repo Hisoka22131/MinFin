@@ -3,7 +3,8 @@
 public static class ConvertHelper
 {
     /// <summary>
-    /// Конвертирование моделей
+    /// Конвертирование моделей с помощью рефелксии
+    /// todo: Сейчас используется маппер
     /// </summary>
     /// <param name="sendModel">Модель в которую надо записать</param>
     /// <param name="model">Модель из которой надо записать</param>

@@ -9,27 +9,27 @@ namespace MinFin.Web.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class XmlController : ControllerBase
+public class CsvController : ControllerBase
 {
-    private readonly IXmlService _xmlService;
+    private readonly ICsvService _csvService;
 
     private readonly IUserRepository _userRepository;
 
-    public XmlController(IXmlService xmlService, IUnitOfWork unitOfWork)
+    public CsvController(ICsvService csvService, IUnitOfWork unitOfWork)
     {
-        _xmlService = xmlService;
+        _csvService = csvService;
         _userRepository = unitOfWork.UserRepository;
     }
 
     [HttpGet("users")]
     public async Task<IActionResult> GetUsers()
     {
-        var xmlContent = await _xmlService.CreateData<UserIntGetDto, User>(_userRepository.GetActualEntities());
+        var csvContent = await _csvService.CreateData<UserIntGetDto, User>(_userRepository.GetActualEntities());
 
         var contentResult = new ContentResult
         {
-            Content = xmlContent,
-            ContentType = "application/xml; charset=utf-8",
+            Content = csvContent,
+            ContentType = "text/csv; charset=utf-8",
             StatusCode = 200
         };
 
@@ -41,8 +41,8 @@ public class XmlController : ControllerBase
     {
         try
         {
-            var users = _xmlService.UploadData<User, UserIntPutDto>(request);
-            
+            var users = _csvService.UploadData<User, UserIntPutDto>(request);
+
             // дальнейшая обработка юзеров
         }
         catch (Exception ex)

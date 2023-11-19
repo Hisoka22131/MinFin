@@ -1,32 +1,30 @@
-﻿using System.Xml;
-using System.Xml.Serialization;
+﻿using System.Globalization;
 using AutoMapper;
+using CsvHelper;
+using CsvHelper.Configuration;
 using MinFin.ParseService.Interfaces;
 
 namespace MinFin.ParseService.Services;
 
-public class XmlService : IXmlService
+public class CsvService : ICsvService
 {
     private readonly IMapper _mapper;
 
-    public XmlService(IMapper mapper)
+    public CsvService(IMapper mapper)
     {
         _mapper = mapper;
     }
-
-    private static async Task<string> CreateXmlPackage(object obj)
+    
+    private static async Task<string> CreateCsvPackage<TResponseDto>(IEnumerable<TResponseDto> obj)
     {
-        var settings = new XmlWriterSettings { Async = true };
+        await using var writer = new StringWriter();
+        await using var csv = new CsvWriter(writer, new CsvConfiguration(CultureInfo.InvariantCulture));
+        
+        await csv.WriteRecordsAsync(obj);
 
-        var serializer = new XmlSerializer(obj.GetType());
-
-        await using var stringWriter = new StringWriter();
-        await using var xmlWriter = XmlWriter.Create(stringWriter, settings);
-        serializer.Serialize(xmlWriter, obj);
-
-        return stringWriter.ToString();
+        return writer.ToString();
     }
-
+    
     public async Task<string?> CreateData<TResponseDto, TModel>(IEnumerable<TModel>? models)
     {
         if (models == null) return "";
@@ -35,7 +33,7 @@ public class XmlService : IXmlService
         {
             var result = models!.Select(model => _mapper.Map<TResponseDto>(model)).ToList();
 
-            return await CreateXmlPackage(result);
+            return await CreateCsvPackage(result);
         }
         catch (Exception e)
         {
@@ -44,8 +42,6 @@ public class XmlService : IXmlService
         }
     }
 
-    
-    
     public async Task<IEnumerable<TEntity>?> UploadData<TEntity, TRequestDto>(IEnumerable<TRequestDto>? models)
     {
         try

@@ -19,8 +19,10 @@
       <ProjectReference Include="..\MinFin.UoW\MinFin.UoW.csproj" />
     </ItemGroup>
 
+
     <ItemGroup>
-      <Folder Include="Abstract\" />
+      <PackageReference Include="AutoMapper" Version="12.0.1" />
+      <PackageReference Include="CsvHelper" Version="30.0.1" />
     </ItemGroup>
 
 </Project>

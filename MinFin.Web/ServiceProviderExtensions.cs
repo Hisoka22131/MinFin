@@ -21,7 +21,8 @@ public static class ServiceProviderExtensions
             .AddDbContext(configuration)
             .AddUnitOfWork()
             .AddCustomServices()
-            .AddParserServices();
+            .AddParserServices()
+            .AddAutoMapper(typeof(MapperConfig));
     }
 
     private static IServiceCollection AddDbContext(this IServiceCollection services, IConfiguration configuration) =>
@@ -36,5 +37,6 @@ public static class ServiceProviderExtensions
         services.AddScoped<IUserService, UserService>();
 
     private static IServiceCollection AddParserServices(this IServiceCollection services) =>
-        services.AddScoped<IXmlService, XmlService>();
+        services.AddScoped<IXmlService, XmlService>()
+                .AddScoped<ICsvService, CsvService>();
 }

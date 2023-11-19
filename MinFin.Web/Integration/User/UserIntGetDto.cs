@@ -1,6 +1,6 @@
 ﻿namespace MinFin.Web.Integration.User;
 
-public class UserGetDto
+public class UserIntGetDto
 {
     public int Id { get; set; }
 
