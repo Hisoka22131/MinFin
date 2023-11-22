@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MinFin.DB.Context.Seed;
 using MinFin.DB.Domain;
 
 namespace MinFin.DB.Context;

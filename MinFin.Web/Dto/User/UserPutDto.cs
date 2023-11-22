@@ -5,7 +5,7 @@ namespace MinFin.Web.Dto.User;
 public class UserPutDto : EntityPutDto
 {
     public string Email { get; set; } = null!;
-    public string Password { get; set; } = null!;
+    public byte[] Password { get; set; } = null!;
     public string FirstName { get; set; } = null!;
     public string? MiddleName { get; set; }
     public string Surname { get; set; } = null!;

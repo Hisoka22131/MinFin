@@ -19,4 +19,5 @@
       <ProjectReference Include="..\MinFin.Repository\MinFin.Repository.csproj" />
     </ItemGroup>
 
+
 </Project>

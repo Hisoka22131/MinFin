@@ -5,5 +5,4 @@ namespace MinFin.UoW.CustomRepository.UserRepo;
 
 public interface IUserRepository : IGenericRepository<User>
 {
-    
 }
