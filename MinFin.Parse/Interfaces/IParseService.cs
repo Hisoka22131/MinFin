@@ -1,4 +1,4 @@
-﻿namespace MinFin.ParseService.Interfaces;
+﻿namespace MinFin.Parse.Interfaces;
 
 public interface IParseService
 {

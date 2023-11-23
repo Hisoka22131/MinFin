@@ -5,8 +5,7 @@ using MinFin.Web.Dto.Base;
 
 namespace MinFin.Web.Services.Base;
 
-public abstract class
-    AbstractEntityService<TEntity, TPostDto, TPutDto, TListDto> : IBaseService<TEntity, TPostDto, TPutDto, TListDto>
+public abstract class AbstractEntityService<TEntity, TPostDto, TPutDto, TListDto> : IBaseService<TEntity, TPostDto, TPutDto, TListDto>
     where TEntity : EntityBase, new()
     where TPutDto : EntityPutDto, new()
     where TPostDto : EntityPostDto, new()

@@ -1,30 +1,32 @@
-﻿using System.Globalization;
+﻿using System.Xml;
+using System.Xml.Serialization;
 using AutoMapper;
-using CsvHelper;
-using CsvHelper.Configuration;
-using MinFin.ParseService.Interfaces;
+using MinFin.Parse.Interfaces;
 
-namespace MinFin.ParseService.Services;
+namespace MinFin.Parse.Services;
 
-public class CsvService : ICsvService
+public class XmlService : IXmlService
 {
     private readonly IMapper _mapper;
 
-    public CsvService(IMapper mapper)
+    public XmlService(IMapper mapper)
     {
         _mapper = mapper;
     }
-    
-    private static async Task<string> CreateCsvPackage<TResponseDto>(IEnumerable<TResponseDto> obj)
-    {
-        await using var writer = new StringWriter();
-        await using var csv = new CsvWriter(writer, new CsvConfiguration(CultureInfo.InvariantCulture));
-        
-        await csv.WriteRecordsAsync(obj);
 
-        return writer.ToString();
+    private static async Task<string> CreateXmlPackage(object obj)
+    {
+        var settings = new XmlWriterSettings { Async = true };
+
+        var serializer = new XmlSerializer(obj.GetType());
+
+        await using var stringWriter = new StringWriter();
+        await using var xmlWriter = XmlWriter.Create(stringWriter, settings);
+        serializer.Serialize(xmlWriter, obj);
+
+        return stringWriter.ToString();
     }
-    
+
     public async Task<string?> CreateData<TResponseDto, TModel>(IEnumerable<TModel>? models)
     {
         if (models == null) return "";
@@ -33,7 +35,7 @@ public class CsvService : ICsvService
         {
             var result = models!.Select(model => _mapper.Map<TResponseDto>(model)).ToList();
 
-            return await CreateCsvPackage(result);
+            return await CreateXmlPackage(result);
         }
         catch (Exception e)
         {
@@ -42,6 +44,8 @@ public class CsvService : ICsvService
         }
     }
 
+    
+    
     public async Task<IEnumerable<TEntity>?> UploadData<TEntity, TRequestDto>(IEnumerable<TRequestDto>? models)
     {
         try

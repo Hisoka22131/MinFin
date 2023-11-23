@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MinFin.DB.Domain;
-using MinFin.ParseService.Interfaces;
+using MinFin.Parse.Interfaces;
 using MinFin.UoW;
 using MinFin.UoW.CustomRepository.UserRepo;
 using MinFin.Web.Integration.User;

@@ -1,19 +1,25 @@
 ﻿using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MinFin.DB.Domain;
 using MinFin.DB.Enums;
 
-namespace MinFin.DB.Context.Seed;
+namespace MinFin.DB.Context.Configuration;
 
-public static class UserSeeder
+public class UserConfiguration : IEntityTypeConfiguration<User>
 {
-    internal static void SeedUsers(this ModelBuilder modelBuilder)
+    public void Configure(EntityTypeBuilder<User> builder)
+    {
+        builder.HasData(GetUsers());
+    }
+
+    private static IEnumerable<User> GetUsers()
     {
         using var hmac = new HMACSHA512();
         var passwordKey = hmac.Key;
         var passwordHash = hmac.ComputeHash("1234"u8.ToArray());
 
-        var users = new List<User>()
+        return new List<User>()
         {
             new()
             {
@@ -48,7 +54,5 @@ public static class UserSeeder
                 UpdateDt = DateTime.Now
             }
         };
-
-        modelBuilder.Entity<User>().HasData(users);
     }
 }

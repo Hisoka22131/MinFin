@@ -19,7 +19,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\MinFin.DB\MinFin.DB.csproj" />
-      <ProjectReference Include="..\MinFin.ParseService\MinFin.ParseService.csproj" />
+      <ProjectReference Include="..\MinFin.OtherDb\MinFin.OtherDb.csproj" />
+      <ProjectReference Include="..\MinFin.Parse\MinFin.Parse.csproj" />
       <ProjectReference Include="..\MinFin.Repository\MinFin.Repository.csproj" />
       <ProjectReference Include="..\MinFin.UoW\MinFin.UoW.csproj" />
     </ItemGroup>

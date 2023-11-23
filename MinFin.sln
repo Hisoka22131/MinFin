@@ -8,7 +8,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinFin.DB", "MinFin.DB\MinF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinFin.UoW", "MinFin.UoW\MinFin.UoW.csproj", "{F65D139B-F3E8-43ED-81BD-76D74868DE8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinFin.ParseService", "MinFin.ParseService\MinFin.ParseService.csproj", "{1C1081D9-1BBD-42C6-9C96-74FDA5234F8B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinFin.Parse", "MinFin.Parse\MinFin.Parse.csproj", "{1C1081D9-1BBD-42C6-9C96-74FDA5234F8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinFin.OtherDb", "MinFin.OtherDb\MinFin.OtherDb.csproj", "{FACD95E5-6534-43C3-AACA-36EF6F9FDA33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +38,9 @@ Global
 		{1C1081D9-1BBD-42C6-9C96-74FDA5234F8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C1081D9-1BBD-42C6-9C96-74FDA5234F8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C1081D9-1BBD-42C6-9C96-74FDA5234F8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FACD95E5-6534-43C3-AACA-36EF6F9FDA33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FACD95E5-6534-43C3-AACA-36EF6F9FDA33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FACD95E5-6534-43C3-AACA-36EF6F9FDA33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FACD95E5-6534-43C3-AACA-36EF6F9FDA33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,4 +1,5 @@
 using MinFin.Web;
+using MinFin.Web.ConfigureServices;
 
 var builder = WebApplication.CreateBuilder(args);
 

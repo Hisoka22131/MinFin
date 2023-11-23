@@ -1,4 +1,4 @@
-﻿namespace MinFin.ParseService.Helpers;
+﻿namespace MinFin.Parse.Helpers;
 
 public static class ConvertHelper
 {

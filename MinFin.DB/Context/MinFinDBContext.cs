@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MinFin.DB.Context.Seed;
+using MinFin.DB.Context.Configuration;
 using MinFin.DB.Domain;
 
 namespace MinFin.DB.Context;
@@ -15,7 +15,6 @@ public class MinFinDbContext : DbContext
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder);
-        modelBuilder.Seed();
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
     }
 }
