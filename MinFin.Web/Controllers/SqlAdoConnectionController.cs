@@ -18,7 +18,7 @@ public class SqlAdoConnectionController : ControllerBase
 
     [HttpGet]
     [Route("rest/get-roles")]
-    public async Task<IActionResult> ConnectToRestDb()
+    public async Task<IActionResult> GetRolesFromRest()
     {
         var connectionString = _configuration.GetConnectionString("RestDbConnectionString");
 
